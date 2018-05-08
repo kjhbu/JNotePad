@@ -270,8 +270,8 @@ public class JNotePad extends JFrame {
 	private class SaveAction extends AbstractAction {
 		public SaveAction() {
 			super("Save");
-	//		putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("ctrl S"));
-	//		putValue(Action.MNEMONIC_KEY,KeyEvent.VK_S);
+			putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("ctrl S"));
+			putValue(Action.MNEMONIC_KEY,KeyEvent.VK_S);
 			//
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -283,6 +283,7 @@ public class JNotePad extends JFrame {
 	private class SaveAsAction extends AbstractAction {
 		public SaveAsAction() {
 			super("SaveAs");
+			putValue(Action.MNEMONIC_KEY,KeyEvent.VK_A);
 		}
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(getValue(Action.NAME));
@@ -293,15 +294,14 @@ public class JNotePad extends JFrame {
 	private class ExitAction extends AbstractAction {
 		public ExitAction() {
 			super("Exit");
+			putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("alt F4"));
+			putValue(Action.MNEMONIC_KEY,KeyEvent.VK_X);			
 		}
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(getValue(Action.NAME));
-			if(_isSaved) 
-				System.exit(0);
-			else
-				_isSaved = save();
-				if(_isSaved)
-					System.exit(0); // exit 함수를 새로 만들어서.. save 되거나, save_no를 선택한 경우만. exit 되도록 구현할 것.
+			if(!confirmSave()) 
+				return;
+			System.exit(0);
 		}
 	}
 	private class CutAction extends AbstractAction {
