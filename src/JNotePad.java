@@ -272,6 +272,7 @@ public class JNotePad extends JFrame {
 			super("Save");
 	//		putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("ctrl S"));
 	//		putValue(Action.MNEMONIC_KEY,KeyEvent.VK_S);
+			//
 		}
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(getValue(Action.NAME));
